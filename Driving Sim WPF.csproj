@@ -17,12 +17,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Assets\Coche-Fondo1.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Coche-Fondo2.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
+    <Content Include="Assets\Coche-Fondo1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Coche-Fondo2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\encendido.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -4,9 +4,9 @@
         Title="Driving Sim" Height="720" Width="1280"
         ResizeMode="NoResize" WindowStyle="SingleBorderWindow">
     <Grid>
-        <!-- Fondo estático con coche -->
-        <Image Source="pack://application:,,,/assets/Coche-Fondo1.png"
-       Stretch="Fill"/>
+        <!-- Fondo estático con coche, se le asigna un x:Name para poder acceder a ella desde el código -->
+        <Image x:Name="CarBackground" Source="pack://application:,,,/assets/Coche-Fondo1.png" Stretch="Fill"/>
+       
         <!-- Interruptor Motor -->
         <Canvas>
             <!-- Texto arriba de los botones -->

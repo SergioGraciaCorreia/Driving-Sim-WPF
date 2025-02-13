@@ -20,7 +20,9 @@ namespace Driving_Sim_WPF
 		public MainWindow()
 		{
 			InitializeComponent();
-			_car = new Car(); // Inicializa el coche
+			// En MainWindow.xaml.cs
+			_car = new Car(CarBackground);  // CarBackground es la referencia de la imagen en tu XAML
+
 		}
 
 		private void btnMotorOn_Click(object sender, RoutedEventArgs e)

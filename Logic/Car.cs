@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media;
 using System.IO;
-
+using System.Windows.Media;
+using System.Windows.Threading;
+using System.Windows.Controls;
+using System.Windows.Media.Imaging; // Para usar el control Image
 
 namespace Driving_Sim_WPF.Logic
 {
@@ -15,18 +13,27 @@ namespace Driving_Sim_WPF.Logic
 		public int CurrentSpeed { get; private set; }
 
 		private MediaPlayer _onPlayer = new MediaPlayer();
-
 		private MediaPlayer _idlePlayer = new MediaPlayer();
-
 		private MediaPlayer _offPlayer = new MediaPlayer();
 
-		public Car()
+		private DispatcherTimer _imageChangeTimer;
+		private int _minInterval = 200; // Intervalo mínimo entre cambios de imagen (en milisegundos)
+		private int _interval = 1000; // Intervalo inicial (1 segundo)
+
+		private Image CarBackground; // Referencia a la imagen
+
+		public Car(Image carBackground)
 		{
 			IsEngineOn = false;
 			CurrentSpeed = 0;
+			CarBackground = carBackground; // Asignamos la imagen pasada
+
+			// Inicializamos el temporizador para cambiar las imágenes
+			_imageChangeTimer = new DispatcherTimer();
+			_imageChangeTimer.Tick += ImageChangeTimer_Tick;
+			_imageChangeTimer.Interval = TimeSpan.FromMilliseconds(_interval);
 		}
 
-		
 		// Método para encender el motor
 		public void StartEngine()
 		{
@@ -39,11 +46,11 @@ namespace Driving_Sim_WPF.Logic
 
 				if (File.Exists(path))
 				{
-					
 					_onPlayer.Open(new Uri(path, UriKind.Absolute));
-					_onPlayer.Volume = 1.0;  
+					_onPlayer.Volume = 1.0;
 					_onPlayer.Play();
 				}
+
 				// Reproducir motor en bucle tras el encendido
 				string idlePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "assets", "motoridle.mp3");
 				if (File.Exists(idlePath))
@@ -63,14 +70,14 @@ namespace Driving_Sim_WPF.Logic
 				IsEngineOn = false;
 				CurrentSpeed = 0;  // Al apagar el motor, la velocidad se resetea
 
+				// Detenemos el temporizador
+				_imageChangeTimer.Stop();
+
 				_onPlayer.Stop();
 				_idlePlayer.Stop();
 				_offPlayer.Open(new Uri(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "assets", "apagado.mp3")));
 				_offPlayer.Play();
 			}
-			
-			
-			
 		}
 
 		// Método para acelerar el coche
@@ -78,12 +85,20 @@ namespace Driving_Sim_WPF.Logic
 		{
 			if (IsEngineOn)
 			{
+				// Aumentamos la velocidad
 				CurrentSpeed += 10;
-				Console.WriteLine($"Acelerando... Velocidad actual: {CurrentSpeed} km/h");
-			}
-			else
-			{
-				Console.WriteLine("No se puede acelerar porque el motor está apagado.");
+
+				// Reducimos el intervalo entre cambios de imagen a medida que aumenta la velocidad
+				_interval = Math.Max(_minInterval, 1000 - CurrentSpeed * 10); // Por ejemplo, 1000ms - velocidad*10
+
+				// Actualizamos el intervalo del temporizador
+				_imageChangeTimer.Interval = TimeSpan.FromMilliseconds(_interval);
+
+				// Iniciar el temporizador si no está en marcha
+				if (!_imageChangeTimer.IsEnabled)
+				{
+					_imageChangeTimer.Start();
+				}
 			}
 		}
 
@@ -92,14 +107,48 @@ namespace Driving_Sim_WPF.Logic
 		{
 			if (CurrentSpeed > 0)
 			{
+				// Reducimos la velocidad
 				CurrentSpeed -= 10;
-				Console.WriteLine($"Frenando... Velocidad actual: {CurrentSpeed} km/h");
+
+				// Aseguramos que la velocidad no sea negativa
+				if (CurrentSpeed < 0)
+				{
+					CurrentSpeed = 0;
+				}
+
+				// Aumentamos el intervalo entre cambios de imagen a medida que disminuye la velocidad
+				_interval = Math.Max(_minInterval, 1000 - CurrentSpeed * 10); // Por ejemplo, 1000ms - velocidad*10
+
+				// Actualizamos el intervalo del temporizador
+				_imageChangeTimer.Interval = TimeSpan.FromMilliseconds(_interval);
+
+				// Iniciar el temporizador si no está en marcha
+				if (!_imageChangeTimer.IsEnabled)
+				{
+					_imageChangeTimer.Start();
+				}
 			}
 			else
 			{
-				Console.WriteLine("El coche ya está detenido.");
+				// Detenemos el temporizador si la velocidad es 0
+				_imageChangeTimer.Stop();
+			}
+		}
+
+
+		private void ImageChangeTimer_Tick(object sender, EventArgs e)
+		{
+			// Alternamos entre las imágenes
+			if (CarBackground.Source.ToString().Contains("Coche-Fondo1.png"))
+			{
+				CarBackground.Source = new BitmapImage(new Uri("pack://application:,,,/assets/Coche-Fondo2.png"));
+			}
+			else
+			{
+				CarBackground.Source = new BitmapImage(new Uri("pack://application:,,,/assets/Coche-Fondo1.png"));
 			}
 		}
 	}
 }
+
 
