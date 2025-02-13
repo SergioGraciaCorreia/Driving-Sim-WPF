@@ -1,0 +1,54 @@
+﻿<Window x:Class="Driving_Sim_WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Driving Sim" Height="720" Width="1280"
+        ResizeMode="NoResize" WindowStyle="SingleBorderWindow">
+    <Grid>
+        <!-- Fondo estático con coche -->
+        <Image Source="pack://application:,,,/assets/Coche-Fondo1.png"
+       Stretch="Fill"/>
+        <!-- Interruptor Motor -->
+        <Canvas>
+            <!-- Texto arriba de los botones -->
+            <TextBlock Text="ENGINE" FontSize="25" FontFamily="Press Start 2P"
+               Foreground="White" Canvas.Left="760" Canvas.Top="500" />
+
+            <!-- Botón ON -->
+            <ToggleButton Name="btnMotorOn" Content="ON" Width="100" Height="60" 
+                  Background="Green" Foreground="White" FontWeight="Bold"
+                  FontSize="20" FontFamily="Press Start 2P"
+                  Canvas.Left="780" Canvas.Top="540"
+                  Click="btnMotorOn_Click"
+                  BorderBrush="Black" BorderThickness="5"/>
+
+            <!-- Botón OFF -->
+            <ToggleButton Name="btnMotorOff" Content="OFF" Width="100" Height="60" 
+                  Background="Red" Foreground="White" FontWeight="Bold"
+                  FontSize="20" FontFamily="Press Start 2P"
+                  Canvas.Left="780" Canvas.Top="610"
+                  Click="btnMotorOff_Click"
+                  BorderBrush="Black" BorderThickness="5"/>
+
+            <!-- Botón Acelerar -->
+            <Button Name="btnAccelerate" Content="Accelerate" Width="250" Height="60"
+            Background="Cyan" Foreground="Black" FontWeight="Bold"
+            FontSize="22" FontFamily="Press Start 2P"
+            Canvas.Left="940" Canvas.Top="540"
+            Click="btnAccelerate_Click"
+            BorderBrush="Black" BorderThickness="5"/>
+
+            <!-- Botón Frenar -->
+            <Button Name="btnBrake" Content="Brake" Width="250" Height="60"
+            Background="LightPink" Foreground="Black" FontWeight="Bold"
+            FontSize="22" FontFamily="Press Start 2P"
+            Canvas.Left="940" Canvas.Top="610"
+            Click="btnBrake_Click"
+            BorderBrush="Black" BorderThickness="5"/>
+        </Canvas>
+
+
+
+
+    </Grid>
+</Window>
+
