@@ -11,12 +11,24 @@
 
   <ItemGroup>
     <None Remove="Assets\Coche-Fondo1.png" />
+    <None Remove="Assets\Coche-Fondo2.png" />
+    <None Remove="Assets\encendido.mp3" />
+    <None Remove="Assets\motoridle.mp3" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Assets\Coche-Fondo1.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Assets\Coche-Fondo2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="Assets\encendido.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\motoridle.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using Driving_Sim_WPF.Logic;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -13,33 +14,37 @@ namespace Driving_Sim_WPF
 {
 	public partial class MainWindow : Window
 	{
+		// Instancia de la clase Car
+		private Car _car;
+
 		public MainWindow()
 		{
 			InitializeComponent();
+			_car = new Car(); // Inicializa el coche
 		}
 
 		private void btnMotorOn_Click(object sender, RoutedEventArgs e)
 		{
-			// Solo se imprime un mensaje para previsualizar el evento
-			Console.WriteLine("Botón Motor ON presionado.");
+			// Enciende el motor
+			_car.StartEngine();
 		}
 
 		private void btnMotorOff_Click(object sender, RoutedEventArgs e)
 		{
-			// Solo se imprime un mensaje para previsualizar el evento
-			Console.WriteLine("Botón Motor OFF presionado.");
+			// Apaga el motor
+			_car.StopEngine();
 		}
 
 		private void btnAccelerate_Click(object sender, RoutedEventArgs e)
 		{
-			// Solo se imprime un mensaje para previsualizar el evento
-			Console.WriteLine("Botón Acelerar presionado.");
+			// Acelera el coche
+			_car.Accelerate();
 		}
 
 		private void btnBrake_Click(object sender, RoutedEventArgs e)
 		{
-			// Solo se imprime un mensaje para previsualizar el evento
-			Console.WriteLine("Botón Frenar presionado.");
+			// Frena el coche
+			_car.Brake();
 		}
 	}
 }
