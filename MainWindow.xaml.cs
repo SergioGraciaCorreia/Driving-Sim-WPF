@@ -21,25 +21,25 @@ namespace Driving_Sim_WPF
 		private void btnMotorOn_Click(object sender, RoutedEventArgs e)
 		{
 			// Solo se imprime un mensaje para previsualizar el evento
-			Console.WriteLine("Botón Motor ON presionado");
+			Console.WriteLine("Botón Motor ON presionado.");
 		}
 
 		private void btnMotorOff_Click(object sender, RoutedEventArgs e)
 		{
 			// Solo se imprime un mensaje para previsualizar el evento
-			Console.WriteLine("Botón Motor OFF presionado");
+			Console.WriteLine("Botón Motor OFF presionado.");
 		}
 
 		private void btnAccelerate_Click(object sender, RoutedEventArgs e)
 		{
 			// Solo se imprime un mensaje para previsualizar el evento
-			Console.WriteLine("Botón Acelerar presionado");
+			Console.WriteLine("Botón Acelerar presionado.");
 		}
 
 		private void btnBrake_Click(object sender, RoutedEventArgs e)
 		{
 			// Solo se imprime un mensaje para previsualizar el evento
-			Console.WriteLine("Botón Frenar presionado");
+			Console.WriteLine("Botón Frenar presionado.");
 		}
 	}
 }
