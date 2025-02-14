@@ -4,9 +4,26 @@
         Title="Driving Sim" Height="720" Width="1280"
         ResizeMode="NoResize" WindowStyle="SingleBorderWindow">
     <Grid>
-        <!-- Fondo estático con coche, se le asigna un x:Name para poder acceder a ella desde el código -->
+        <!-- Fondo estático con coche. Se le asigna un x:Name para poder acceder a ella desde el código -->
         <Image x:Name="CarBackground" Source="pack://application:,,,/assets/Coche-Fondo1.png" Stretch="Fill"/>
-       
+
+        <!-- Ambientador PNG (para cuando está parado) -->
+        <Image x:Name="AmbientadorImage" Source="pack://application:,,,/assets/ambientador.png"
+            Width="368" Height="465"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Margin="912,10,0,0"
+            Visibility="Visible" />
+
+        <!-- Ambientador GIF (para cuando está en marcha) -->
+        <Image x:Name="AmbientadorGifImage"
+       Width="368" Height="465"
+       Visibility="Collapsed"
+       HorizontalAlignment="Left"
+       VerticalAlignment="Top"
+       Margin="912,10,0,0"/>      
+
+
         <!-- Interruptor Motor -->
         <Canvas>
             <!-- Texto arriba de los botones -->
