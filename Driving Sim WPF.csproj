@@ -10,6 +10,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\ambientador.gif" />
+    <None Remove="Assets\ambientador.png" />
     <None Remove="Assets\Coche-Fondo1.png" />
     <None Remove="Assets\Coche-Fondo2.png" />
     <None Remove="Assets\encendido.mp3" />
@@ -17,6 +19,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Assets\ambientador.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\ambientador.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Coche-Fondo1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
